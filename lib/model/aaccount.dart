@@ -1,0 +1,4 @@
+class AccountModel {
+  double totalAmount;
+  
+}

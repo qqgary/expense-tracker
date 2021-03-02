@@ -1,5 +1,6 @@
 import 'package:expense_tracker/themes/styles.dart';
 import 'package:expense_tracker/widgets/app_text.dart';
+import 'package:expense_tracker/widgets/category_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -60,7 +61,7 @@ class AccountOverviewScreen extends StatelessWidget {
           ),
           AppHeightSizedBox.mediumBox,
           ListTile(
-            leading: _buildCategoryIcon(
+            leading: CategoryIcon(
               icon: Icons.fastfood,
               color: AppColor.red,
             ),
@@ -71,7 +72,7 @@ class AccountOverviewScreen extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: _buildCategoryIcon(
+            leading: CategoryIcon(
               icon: FontAwesomeIcons.car,
               color: AppColor.blue,
             ),
@@ -82,7 +83,7 @@ class AccountOverviewScreen extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: _buildCategoryIcon(
+            leading: CategoryIcon(
                 icon: Icons.local_hospital, color: AppColor.orange),
             title: AppText('Medication'),
             trailing: AppText(
@@ -91,20 +92,6 @@ class AccountOverviewScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Container _buildCategoryIcon(
-      {@required IconData icon, @required Color color}) {
-    return Container(
-      padding: EdgeInsets.all(AppMargin.extraSmall),
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-      ),
-      child: Icon(
-        icon,
       ),
     );
   }

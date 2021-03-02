@@ -65,6 +65,7 @@ class AppScaffold extends StatelessWidget {
                 title: AppText(
                   title,
                   color: AppColor.white,
+                  fontSize: AppFontSize.large,
                 ).padding(),
                 iconTheme: IconThemeData(color: backButtonColor),
                 actions: actionItems,
