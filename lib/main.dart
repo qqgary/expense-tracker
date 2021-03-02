@@ -1,14 +1,12 @@
+import 'package:expense_tracker/config/routes.dart';
+import 'package:expense_tracker/provider/account.dart';
+import 'package:expense_tracker/provider/general.dart';
+import 'package:expense_tracker/screens/main_screen.dart';
+import 'package:expense_tracker/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter/services.dart';
-
-import 'package:expense_tracker/themes/themeData.dart';
-import 'package:expense_tracker/provider/general.dart';
-import 'package:expense_tracker/config/routes.dart';
-import 'package:expense_tracker/utils/constant.dart';
-import 'package:expense_tracker/screens/main_screen.dart';
-import 'package:expense_tracker/screens/bottom_navigation_screens/account_overview.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +25,9 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(
               create: (_) => GeneralProvider(),
+            ),
+            ChangeNotifierProvider(
+              create: (_) => AccountProvider(),
             ),
           ],
           child: MaterialApp(

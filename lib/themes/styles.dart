@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:expense_tracker/utils/constant.dart';
 
 class AppColor {
   static Color primary = Colors.orangeAccent;
@@ -27,8 +28,6 @@ class AppColor {
   static Color warning = Color(0xffF4C11A);
   static Color error = Color(0xffF96366);
 }
-
-
 
 class AppBarElevation {
   static double normal = 6;
@@ -242,12 +241,11 @@ InputDecoration textFormFieldInputDecoration(String hintText, Widget icon) {
   return InputDecoration(
     hintText: hintText,
     filled: true,
-    fillColor: AppColor.lightGrey,
+    focusColor: AppColor.white,
+    fillColor: Constant.darkPrimary,
     hintStyle: TextStyle(color: AppColor.grey),
     suffixIcon: icon,
-    contentPadding: EdgeInsets.symmetric(horizontal: AppMargin.medium),
     border: OutlineInputBorder(
-      borderSide: BorderSide.none,
       borderRadius: AppBorderRadius.normal,
     ),
   );

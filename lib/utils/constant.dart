@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:expense_tracker/themes/styles.dart';
-import 'package:expense_tracker/widgets/app_text.dart';
-import 'package:expense_tracker/screens/bottom_navigation_screens/account_overview.dart';
-import 'package:expense_tracker/screens/bottom_navigation_screens/add_expense.dart';
 import 'package:expense_tracker/model/category.dart';
+import 'package:expense_tracker/screens/bottom_navigation_screens/account_overview.dart';
+import 'package:expense_tracker/screens/bottom_navigation_screens/expense/add_expense.dart';
+import 'package:expense_tracker/themes/styles.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Constant {
   static final List<Widget> bottomNavigationScreen = [
@@ -18,18 +15,18 @@ class Constant {
   static final List<BottomNavigationBarItem> bottomNavigationBarItem = [
     BottomNavigationBarItem(
       icon: Icon(Icons.person),
-      title: AppText(''),
+      title: Container(),
     ),
     BottomNavigationBarItem(
       icon: Icon(
         FontAwesomeIcons.plusCircle,
         size: 36,
       ),
-      title: AppText(''),
+      title: Container(),
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.pie_chart),
-      title: AppText(''),
+      title: Container(),
     ),
   ];
 

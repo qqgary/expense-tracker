@@ -63,7 +63,7 @@ class AppScaffold extends StatelessWidget {
                 leading: isBackButton ? leadingIcon : Container(),
                 elevation: isElevation ? AppBarElevation.normal : 0,
                 title: AppText(
-                  title,
+                  title ?? '',
                   color: AppColor.white,
                   fontSize: AppFontSize.large,
                 ).padding(),
