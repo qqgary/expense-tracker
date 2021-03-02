@@ -20,7 +20,7 @@ class AppText extends StatelessWidget {
       {this.fontFamily,
       this.fontSize,
       this.fontWeight,
-      this.color: Colors.black,
+      this.color: Colors.white,
       this.fontStype,
       this.textAlign,
       this.overflow: TextOverflow.ellipsis,

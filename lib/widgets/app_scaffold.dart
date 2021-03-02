@@ -1,11 +1,13 @@
 import 'package:expense_tracker/themes/styles.dart';
+import 'package:expense_tracker/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:expense_tracker/utils/widget_modifier.dart';
 
 class AppScaffold extends StatelessWidget {
   final bool appBar;
-  final Widget titleChild;
+  final String title;
   final Color backgroundColor;
   final Color appBarBackgroundColor;
   final Color backButtonColor;
@@ -16,16 +18,16 @@ class AppScaffold extends StatelessWidget {
   final bool isElevation;
   final bool isBackButton;
   final bool isDrawer;
-  final bool isActionBar;
   final bool isScrollView;
   final Widget floatingActionButton;
   final Widget actionBar;
   final Widget bottomNavigatorBar;
   final Widget leadingIcon;
+  final List<Widget> actionItems;
 
   const AppScaffold({
-    this.titleChild,
-    this.backgroundColor: Colors.white,
+    this.title,
+    this.backgroundColor: const Color(0xff1E1E1E),
     this.child,
     this.appBarBackgroundColor: const Color(0xff00adef),
     this.backButtonColor: Colors.white,
@@ -37,11 +39,11 @@ class AppScaffold extends StatelessWidget {
     this.scaffoldKey,
     this.drawer,
     this.tabBar,
-    this.isActionBar,
     this.floatingActionButton,
     this.actionBar,
     this.bottomNavigatorBar,
     this.leadingIcon,
+    this.actionItems,
     Key key,
   }) : super(key: key);
 
@@ -60,11 +62,12 @@ class AppScaffold extends StatelessWidget {
             ? AppBar(
                 leading: isBackButton ? leadingIcon : Container(),
                 elevation: isElevation ? AppBarElevation.normal : 0,
-                title: Center(
-                  child: titleChild,
-                ),
+                title: AppText(
+                  title,
+                  color: AppColor.white,
+                ).padding(),
                 iconTheme: IconThemeData(color: backButtonColor),
-                actions: <Widget>[],
+                actions: actionItems,
                 bottom: tabBar,
               )
             : null,

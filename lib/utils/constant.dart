@@ -15,20 +15,18 @@ class Constant {
   static final List<BottomNavigationBarItem> bottomNavigationBarItem = [
     BottomNavigationBarItem(
       icon: Icon(Icons.person),
-      title: AppText('', fontSize: AppFontSize.small),
+      title: AppText(''),
     ),
     BottomNavigationBarItem(
       icon: Icon(
-        FontAwesomeIcons.newspaper,
+        FontAwesomeIcons.plusCircle,
+        size: 36,
       ),
-      title: AppText(
-        '',
-        fontSize: AppFontSize.small,
-      ),
+      title: AppText(''),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.event),
-      title: AppText('', fontSize: AppFontSize.small),
+      icon: Icon(Icons.pie_chart),
+      title: AppText(''),
     ),
   ];
 

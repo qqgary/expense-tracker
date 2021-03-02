@@ -8,4 +8,11 @@ class GeneralProvider extends ChangeNotifier {
     _bottomNavigationIndex = i;
     notifyListeners();
   }
+
+  bool _isOverviewVisibility = true;
+  bool get isOverviewVisibility => this._isOverviewVisibility;
+  void setSOverviewVisibility() {
+    _isOverviewVisibility = !_isOverviewVisibility;
+    notifyListeners();
+  }
 }
