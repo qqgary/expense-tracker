@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class AppColor {
-  static Color primary = Color(0xff00adef);
+  static Color primary = Colors.orangeAccent;
+  static Color secondary = Color(0xff40bfb4);
   static Color white = Colors.white;
   static Color divider = Colors.grey[200];
   static Color placeHolder = Colors.grey;
@@ -26,6 +27,8 @@ class AppColor {
   static Color warning = Color(0xffF4C11A);
   static Color error = Color(0xffF96366);
 }
+
+
 
 class AppBarElevation {
   static double normal = 6;
