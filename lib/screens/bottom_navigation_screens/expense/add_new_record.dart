@@ -5,6 +5,7 @@ import 'package:expense_tracker/widgets/app_action_button.dart';
 import 'package:expense_tracker/widgets/app_text.dart';
 import 'package:expense_tracker/widgets/app_text_form_field.dart';
 import 'package:expense_tracker/provider/account.dart';
+import 'package:expense_tracker/provider/general.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/model/category.dart';
 import 'package:expense_tracker/widgets/app_scaffold.dart';
@@ -37,6 +38,10 @@ class AddNewRecord extends StatelessWidget {
       name: accProvider.expenseName,
       note: accProvider.expenseNode,
     );
+    final GeneralProvider genProvider =
+        Provider.of<GeneralProvider>(context, listen: false);
+
+    if (genProvider.isFirstTimeLogin) genProvider.setIsFirstTimeLogin();
 
     if (category.isExpense)
       accProvider.minusAmount(expense);

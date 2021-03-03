@@ -15,4 +15,11 @@ class GeneralProvider extends ChangeNotifier {
     _isOverviewVisibility = !_isOverviewVisibility;
     notifyListeners();
   }
+
+  bool _isFirstTimeLogin = true;
+  bool get isFirstTimeLogin => this._isFirstTimeLogin;
+  void setIsFirstTimeLogin() {
+    _isFirstTimeLogin = false;
+    notifyListeners();
+  }
 }

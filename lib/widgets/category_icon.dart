@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class CategoryIcon extends StatelessWidget {
   final IconData icon;
   final Color color;
-  const CategoryIcon({@required this.icon, @required this.color, Key key})
+  final double size;
+  const CategoryIcon(
+      {@required this.icon, @required this.color, this.size, Key key})
       : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class CategoryIcon extends StatelessWidget {
       ),
       child: Icon(
         icon,
+        size: size ?? null,
       ),
     );
   }

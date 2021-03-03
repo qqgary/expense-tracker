@@ -4,12 +4,14 @@ import 'package:expense_tracker/provider/general.dart';
 import 'package:expense_tracker/themes/styles.dart';
 import 'package:expense_tracker/utils/utils.dart';
 import 'package:expense_tracker/utils/widget_modifier.dart';
+import 'package:expense_tracker/widgets/app_action_button.dart';
 import 'package:expense_tracker/widgets/app_scaffold.dart';
 import 'package:expense_tracker/widgets/app_text.dart';
 import 'package:expense_tracker/widgets/category_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:expense_tracker/screens/bottom_navigation_screens/expense_detail.dart';
 
 class AccountOverviewScreen extends StatelessWidget {
   static const String routeName = 'account-overview';
@@ -31,9 +33,33 @@ class AccountOverviewScreen extends StatelessWidget {
           ).padding(),
         ),
       ],
-      child: _buildMainContainer(context, genProvider),
+      child: genProvider.isFirstTimeLogin
+          ? _buildFirstTimeLoginContainer(context, genProvider)
+          : _buildMainContainer(context, genProvider),
     );
   }
+
+  Column _buildFirstTimeLoginContainer(
+    BuildContext context,
+    GeneralProvider genProvider,
+  ) =>
+      Column(
+        children: [
+          Container(
+            child: Image.asset(
+              'assets/empty_space.png',
+              height: maxHeight(context) * 0.7,
+            ),
+          ),
+          AppActionButton(
+            title: 'Go Add Now',
+            function: () {
+              genProvider.bottomNavigationIndex = 1;
+            },
+            isMaxSize: true,
+          ).padding(),
+        ],
+      );
 
   Widget _buildMainContainer(
     BuildContext context,
@@ -44,10 +70,17 @@ class AccountOverviewScreen extends StatelessWidget {
     return Column(
       children: [
         _buildAccountBalance(
-            context, sumAmount, genProvider.isOverviewVisibility),
+          context,
+          sumAmount,
+          genProvider.isOverviewVisibility,
+        ),
         AppHeightSizedBox.mediumBox,
         _buildRecentExpenses(
-            context, sumAmount, genProvider.isOverviewVisibility, accProvider),
+          context,
+          sumAmount,
+          genProvider.isOverviewVisibility,
+          accProvider,
+        ),
       ],
     );
   }
@@ -78,6 +111,13 @@ class AccountOverviewScreen extends StatelessWidget {
             itemBuilder: (ctx, i) {
               ExpenseModel expense = accProvider.expenses[i];
               return ListTile(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    ExpenseDetailScreen.routeName,
+                    arguments: expense,
+                  );
+                },
                 leading: CategoryIcon(
                   icon: expense.category.icon,
                   color: expense.category.color,
@@ -98,40 +138,39 @@ class AccountOverviewScreen extends StatelessWidget {
     );
   }
 
-  Row _buildAccountBalance(
+  Widget _buildAccountBalance(
     BuildContext context,
     double sumAmount,
     bool isVisible,
-  ) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          children: [
-            AppText(
-              'Total',
-              fontSize: AppFontSize.extraSmall,
-              color: AppColor.grey,
-            ),
-            AppText('MYR'),
-          ],
-        ),
-        AppWidthSizedBox.mediumBox,
-        isVisible
-            ? AppText(
-                sumAmount.toString(),
-                isCurrencyFormat: true,
-                color: (sumAmount) < 0 ? AppColor.red : AppColor.green,
-                fontSize: AppFontSize.extraTitle,
-                fontWeight: AppFontWeight.bold,
-              )
-            : AppText(
-                sumAmount < 0 ? 'Bankruptcy' : 'Billionaire',
-                color: sumAmount < 0 ? AppColor.red : AppColor.green,
-                fontSize: AppFontSize.extraTitle,
-                fontWeight: AppFontWeight.bold,
+  ) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              AppText(
+                'Total',
+                fontSize: AppFontSize.extraSmall,
+                color: AppColor.grey,
               ),
-      ],
-    );
-  }
+              AppText('MYR'),
+            ],
+          ),
+          AppWidthSizedBox.mediumBox,
+          isVisible
+              ? AppText(
+                  sumAmount.toString(),
+                  isCurrencyFormat: true,
+                  color: (sumAmount) < 0 ? AppColor.red : AppColor.green,
+                  fontSize: AppFontSize.extraTitle,
+                  fontWeight: AppFontWeight.bold,
+                )
+              : AppText(
+                  sumAmount < 0 ? 'Bankruptcy' : 'Billionaire',
+                  color: sumAmount < 0 ? AppColor.red : AppColor.green,
+                  fontSize: AppFontSize.extraTitle,
+                  fontWeight: AppFontWeight.bold,
+                ),
+        ],
+      ).padding();
 }
