@@ -8,6 +8,7 @@ import 'package:expense_tracker/widgets/app_action_button.dart';
 import 'package:expense_tracker/widgets/app_scaffold.dart';
 import 'package:expense_tracker/widgets/app_text.dart';
 import 'package:expense_tracker/widgets/category_icon.dart';
+import 'package:expense_tracker/widgets/first_time_use.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -34,32 +35,10 @@ class AccountOverviewScreen extends StatelessWidget {
         ),
       ],
       child: genProvider.isFirstTimeLogin
-          ? _buildFirstTimeLoginContainer(context, genProvider)
+          ? FirstTimeUseContainer(context: context, genProvider: genProvider)
           : _buildMainContainer(context, genProvider),
     );
   }
-
-  Column _buildFirstTimeLoginContainer(
-    BuildContext context,
-    GeneralProvider genProvider,
-  ) =>
-      Column(
-        children: [
-          Container(
-            child: Image.asset(
-              'assets/empty_space.png',
-              height: maxHeight(context) * 0.7,
-            ),
-          ),
-          AppActionButton(
-            title: 'Go Add Now',
-            function: () {
-              genProvider.bottomNavigationIndex = 1;
-            },
-            isMaxSize: true,
-          ).padding(),
-        ],
-      );
 
   Widget _buildMainContainer(
     BuildContext context,

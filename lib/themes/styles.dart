@@ -17,7 +17,7 @@ class AppColor {
   static Color red = Color(0xffed5f59);
   static Color deepRed = Color(0xffD55550);
   static Color green = Colors.green;
-  static Color accentGreen = Colors.greenAccent;
+  static Color accentGreen = Colors.greenAccent[400];
   static Color blueText = Colors.blueAccent;
   static Color blue = Colors.blueAccent;
   static Color yellow = Colors.yellowAccent;
@@ -76,10 +76,8 @@ class AppOpacity {
   static double half = 0.5;
 }
 
-
-
 const List<Color> lineChartGradientColors = [
-  Color(0xff23b6e6),
+  Colors.orangeAccent,
   Color(0xff02d39a),
 ];
 

@@ -43,10 +43,11 @@ class AddNewRecord extends StatelessWidget {
 
     if (genProvider.isFirstTimeLogin) genProvider.setIsFirstTimeLogin();
 
-    if (category.isExpense)
+    if (category.isExpense) {
       accProvider.minusAmount(expense);
-    else
+    } else {
       accProvider.addAmount(expense);
+    }
 
     Navigator.pop(context);
   }

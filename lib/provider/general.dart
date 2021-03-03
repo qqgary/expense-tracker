@@ -21,4 +21,12 @@ class GeneralProvider extends ChangeNotifier {
     _isFirstTimeLogin = false;
     notifyListeners();
   }
+
+  int _pieChartTouchedIndex;
+  int get pieChartTouchedIndex => this._pieChartTouchedIndex;
+  void setPieChartTouchedIndex(int index) {
+    print(index);
+    _pieChartTouchedIndex = index;
+    notifyListeners();
+  }
 }
