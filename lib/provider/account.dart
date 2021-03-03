@@ -1,12 +1,12 @@
-import 'package:expense_tracker/model/aaccount.dart';
-import 'package:expense_tracker/model/category.dart';
+import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 
 class AccountProvider extends ChangeNotifier {
-  AccountModel _account = AccountModel(
-    amount: 0.00,
-  );
-  AccountModel get account => this._account;
+  double _sumAmount = 0;
+  double get sumAmount => this._sumAmount;
+
+  List<ExpenseModel> _expenses = List<ExpenseModel>();
+  List<ExpenseModel> get expenses => this._expenses;
 
   double _expensePrice;
   double get expensePrice => this._expensePrice;
@@ -26,13 +26,15 @@ class AccountProvider extends ChangeNotifier {
     this._expenseNode = val;
   }
 
-  addAmount() {
-    _account.amount += expensePrice;
+  addAmount(ExpenseModel expense) {
+    _sumAmount += expensePrice;
+    _expenses.add(expense);
     notifyListeners();
   }
 
-  minusAmount() {
-    _account.amount -= expensePrice;
+  minusAmount(ExpenseModel expense) {
+    _sumAmount -= expensePrice;
+    _expenses.add(expense);
     notifyListeners();
   }
 }

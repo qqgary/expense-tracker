@@ -1,5 +1,6 @@
 import 'package:expense_tracker/themes/styles.dart';
 import 'package:expense_tracker/utils/utils.dart';
+import 'package:expense_tracker/model/expense.dart';
 import 'package:expense_tracker/widgets/app_action_button.dart';
 import 'package:expense_tracker/widgets/app_text.dart';
 import 'package:expense_tracker/widgets/app_text_form_field.dart';
@@ -26,9 +27,21 @@ class AddNewRecord extends StatelessWidget {
   void _onAddRecord(BuildContext context) {
     if (!_formKey.currentState.validate()) return;
     _formKey.currentState.save();
+
     final AccountProvider accProvider =
         Provider.of<AccountProvider>(context, listen: false);
-    accProvider.addAmount();
+
+    final ExpenseModel expense = ExpenseModel(
+      amount: accProvider.expensePrice,
+      category: category,
+      name: accProvider.expenseName,
+      note: accProvider.expenseNode,
+    );
+
+    if (category.isExpense)
+      accProvider.minusAmount(expense);
+    else
+      accProvider.addAmount(expense);
 
     Navigator.pop(context);
   }

@@ -58,19 +58,64 @@ class Constant {
   );
 
   static List<CategoryModel> categories = [
-    CategoryModel(icon: Icons.fastfood, color: AppColor.red, name: 'Food'),
-    CategoryModel(icon: FontAwesomeIcons.car, color: AppColor.blue, name: 'Car'),
     CategoryModel(
-        icon: Icons.local_hospital, color: AppColor.orange, name: 'Health'),
+      icon: Icons.fastfood,
+      color: AppColor.red,
+      name: 'Food',
+      isExpense: true,
+    ),
     CategoryModel(
-        icon: FontAwesomeIcons.home, color: AppColor.yellow, name: 'Living'),
-    CategoryModel(icon: Icons.book, color: AppColor.red, name: 'Education'),
+      icon: FontAwesomeIcons.car,
+      color: AppColor.blue,
+      name: 'Car',
+      isExpense: true,
+    ),
     CategoryModel(
-        icon: FontAwesomeIcons.shieldVirus,
-        color: AppColor.red,
-        name: 'Insurance'),
-    CategoryModel(icon: Icons.phone, color: AppColor.red, name: 'Phone'),
-    CategoryModel(icon: Icons.pets, color: AppColor.orange, name: 'Pet'),
-    CategoryModel(icon: Icons.eject, color: AppColor.orange, name: 'Others'),
+      icon: Icons.local_hospital,
+      color: AppColor.orange,
+      name: 'Health',
+      isExpense: true,
+    ),
+    CategoryModel(
+      icon: FontAwesomeIcons.home,
+      color: AppColor.yellow,
+      name: 'Living',
+      isExpense: true,
+    ),
+    CategoryModel(
+      icon: Icons.book,
+      color: AppColor.red,
+      name: 'Education',
+      isExpense: true,
+    ),
+    CategoryModel(
+      icon: FontAwesomeIcons.shieldVirus,
+      color: AppColor.red,
+      name: 'Insurance',
+      isExpense: true,
+    ),
+    CategoryModel(
+      icon: Icons.phone,
+      color: AppColor.red,
+      name: 'Phone',
+      isExpense: true,
+    ),
+    CategoryModel(
+      icon: Icons.pets,
+      color: AppColor.orange,
+      name: 'Pet',
+      isExpense: true,
+    ),
+    CategoryModel(
+      icon: Icons.eject,
+      color: AppColor.orange,
+      name: 'Others',
+      isExpense: true,
+    ),
+    CategoryModel(
+        icon: Icons.attach_money,
+        color: AppColor.accentGreen,
+        name: 'Income',
+        isExpense: false),
   ];
 }

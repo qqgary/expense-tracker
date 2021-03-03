@@ -1,4 +1,4 @@
-import 'package:expense_tracker/model/aaccount.dart';
+import 'package:expense_tracker/model/expense.dart';
 import 'package:expense_tracker/provider/account.dart';
 import 'package:expense_tracker/provider/general.dart';
 import 'package:expense_tracker/themes/styles.dart';
@@ -10,7 +10,6 @@ import 'package:expense_tracker/widgets/category_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class AccountOverviewScreen extends StatelessWidget {
   static const String routeName = 'account-overview';
@@ -25,7 +24,7 @@ class AccountOverviewScreen extends StatelessWidget {
         InkWell(
           onTap: () => genProvider.setSOverviewVisibility(),
           child: Icon(
-            // This can be more privacy when adding expense
+            // This can be more privacy when viewing expenses
             genProvider.isOverviewVisibility
                 ? Icons.visibility
                 : Icons.visibility_off,
@@ -41,23 +40,27 @@ class AccountOverviewScreen extends StatelessWidget {
     GeneralProvider genProvider,
   ) {
     final AccountProvider accProvider = Provider.of<AccountProvider>(context);
-    AccountModel account = accProvider.account;
+    final double sumAmount = accProvider.sumAmount;
     return Column(
       children: [
         _buildAccountBalance(
-            context, account, genProvider.isOverviewVisibility),
+            context, sumAmount, genProvider.isOverviewVisibility),
         AppHeightSizedBox.mediumBox,
-        _buildTop3Categories(
-            context, account, genProvider.isOverviewVisibility),
+        _buildRecentExpenses(
+            context, sumAmount, genProvider.isOverviewVisibility, accProvider),
       ],
     );
   }
 
-  Container _buildTop3Categories(
+  Container _buildRecentExpenses(
     BuildContext context,
-    AccountModel account,
+    double sumAmount,
     bool isVisible,
+    AccountProvider accProvider,
   ) {
+    if (accProvider.expenses == null || accProvider.expenses.isEmpty)
+      return Container();
+
     return Container(
       padding: EdgeInsets.all(AppMargin.medium),
       width: maxWidth(context),
@@ -69,39 +72,25 @@ class AccountOverviewScreen extends StatelessWidget {
             fontSize: AppFontSize.extraTitle,
           ),
           AppHeightSizedBox.mediumBox,
-          ListTile(
-            leading: CategoryIcon(
-              icon: Icons.fastfood,
-              color: AppColor.red,
-            ),
-            title: AppText('Food'),
-            trailing: AppText(
-              isVisible ? '1,307.00' : '🙈',
-              color: AppColor.red,
-            ),
-          ),
-          ListTile(
-            leading: CategoryIcon(
-              icon: FontAwesomeIcons.car,
-              color: AppColor.blue,
-            ),
-            title: AppText('Cars'),
-            trailing: AppText(
-              isVisible ? '1,307.00' : '🙈',
-              color: AppColor.red,
-            ),
-          ),
-          ListTile(
-            leading: CategoryIcon(
-              icon: Icons.local_hospital,
-              color: AppColor.orange,
-            ),
-            title: AppText('Medication'),
-            trailing: AppText(
-              isVisible ? '1,307.00' : '🙈',
-              color: AppColor.red,
-            ),
-          ),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: accProvider.expenses.length,
+            itemBuilder: (ctx, i) {
+              ExpenseModel expense = accProvider.expenses[i];
+              return ListTile(
+                leading: CategoryIcon(
+                  icon: expense.category.icon,
+                  color: expense.category.color,
+                ),
+                title: AppText(expense.category.name),
+                subtitle: expense.name.isEmpty ? null : AppText(expense.name),
+                trailing: AppText(
+                  isVisible ? expense.amount.toString() : '🙈',
+                  color: AppColor.red,
+                ),
+              );
+            },
+          )
         ],
       ),
     );
@@ -109,7 +98,7 @@ class AccountOverviewScreen extends StatelessWidget {
 
   Row _buildAccountBalance(
     BuildContext context,
-    AccountModel account,
+    double sumAmount,
     bool isVisible,
   ) {
     return Row(
@@ -128,15 +117,15 @@ class AccountOverviewScreen extends StatelessWidget {
         AppWidthSizedBox.mediumBox,
         isVisible
             ? AppText(
-                account.amount.toString(),
+                sumAmount.toString(),
                 isCurrencyFormat: true,
-                color: (account.amount) < 0 ? AppColor.red : AppColor.green,
+                color: (sumAmount) < 0 ? AppColor.red : AppColor.green,
                 fontSize: AppFontSize.extraTitle,
                 fontWeight: AppFontWeight.bold,
               )
             : AppText(
-                account.amount < 0 ? 'Bankruptcy' : 'Billionaire',
-                color: account.amount < 0 ? AppColor.red : AppColor.green,
+                sumAmount < 0 ? 'Bankruptcy' : 'Billionaire',
+                color: sumAmount < 0 ? AppColor.red : AppColor.green,
                 fontSize: AppFontSize.extraTitle,
                 fontWeight: AppFontWeight.bold,
               ),

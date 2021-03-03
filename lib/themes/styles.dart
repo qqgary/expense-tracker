@@ -17,6 +17,7 @@ class AppColor {
   static Color red = Color(0xffed5f59);
   static Color deepRed = Color(0xffD55550);
   static Color green = Colors.green;
+  static Color accentGreen = Colors.greenAccent;
   static Color blueText = Colors.blueAccent;
   static Color blue = Colors.blueAccent;
   static Color yellow = Colors.yellowAccent;

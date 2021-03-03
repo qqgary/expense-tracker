@@ -30,6 +30,7 @@ class AddExpenseScreen extends StatelessWidget {
           'Choose one category',
           color: AppColor.white,
         ).padding(),
+     
         GridView.builder(
           shrinkWrap: true,
           gridDelegate:
@@ -65,7 +66,9 @@ class AddExpenseScreen extends StatelessWidget {
               ),
             );
           },
-        )
+        ),
+     
+
       ],
     );
   }
