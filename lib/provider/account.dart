@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class AccountProvider extends ChangeNotifier {
   AccountModel _account = AccountModel(
-    totalEarning: 100000.00,
-    totalExpenses: 50000.00,
+    amount: 100000.00,
   );
   AccountModel get account => this._account;
 
@@ -26,8 +25,13 @@ class AccountProvider extends ChangeNotifier {
     this._expenseNode = val;
   }
 
-  addTotalValue() {
-    _account.totalEarning += expensePrice;
+  addAmount() {
+    _account.amount += expensePrice;
+    notifyListeners();
+  }
+
+  minusAmount() {
+    _account.amount -= expensePrice;
     notifyListeners();
   }
 }

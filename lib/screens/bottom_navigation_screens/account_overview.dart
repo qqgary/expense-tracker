@@ -75,7 +75,7 @@ class AccountOverviewScreen extends StatelessWidget {
             ),
             title: AppText('Food'),
             trailing: AppText(
-              'MYR1,307.00',
+              isVisible ? '1,307.00' : '🙈',
               color: AppColor.red,
             ),
           ),
@@ -86,7 +86,7 @@ class AccountOverviewScreen extends StatelessWidget {
             ),
             title: AppText('Cars'),
             trailing: AppText(
-              'MYR1,307.00',
+              isVisible ? '1,307.00' : '🙈',
               color: AppColor.red,
             ),
           ),
@@ -97,7 +97,7 @@ class AccountOverviewScreen extends StatelessWidget {
             ),
             title: AppText('Medication'),
             trailing: AppText(
-              'MYR1,307.00',
+              isVisible ? '1,307.00' : '🙈',
               color: AppColor.red,
             ),
           ),
@@ -127,20 +127,14 @@ class AccountOverviewScreen extends StatelessWidget {
         AppWidthSizedBox.mediumBox,
         isVisible
             ? AppText(
-                (account.totalEarning - account.totalExpenses).toString(),
-                color: (account.totalEarning - account.totalExpenses) < 0
-                    ? AppColor.red
-                    : AppColor.green,
+                (account.amount).toString(),
+                color: (account.amount) < 0 ? AppColor.red : AppColor.green,
                 fontSize: AppFontSize.extraTitle,
                 fontWeight: AppFontWeight.bold,
               )
             : AppText(
-                (account.totalEarning - account.totalExpenses) < 0
-                    ? 'Bankruptcy'
-                    : 'Billionaire',
-                color: (account.totalEarning - account.totalExpenses) < 0
-                    ? AppColor.red
-                    : AppColor.green,
+                account.amount < 0 ? 'Bankruptcy' : 'Billionaire',
+                color: account.amount < 0 ? AppColor.red : AppColor.green,
                 fontSize: AppFontSize.extraTitle,
                 fontWeight: AppFontWeight.bold,
               ),

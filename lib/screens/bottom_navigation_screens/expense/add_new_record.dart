@@ -28,7 +28,7 @@ class AddNewRecord extends StatelessWidget {
     _formKey.currentState.save();
     final AccountProvider accProvider =
         Provider.of<AccountProvider>(context, listen: false);
-    accProvider.addTotalValue();
+    accProvider.addAmount();
 
     Navigator.pop(context);
   }

@@ -1,9 +1,10 @@
 import 'package:expense_tracker/model/category.dart';
 
 class AccountModel {
-  double totalEarning;
-  double totalExpenses;
-  List<Category> categories;
+  double amount;
+  String title;
+  String description;
+  Category categories;
 
-  AccountModel({this.totalEarning, this.totalExpenses, this.categories});
+  AccountModel({this.amount, this.categories});
 }
