@@ -4,12 +4,13 @@ import 'package:expense_tracker/screens/bottom_navigation_screens/expense/add_ex
 import 'package:expense_tracker/themes/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:expense_tracker/screens/bottom_navigation_screens/line_chart.dart';
 
 class Constant {
   static final List<Widget> bottomNavigationScreen = [
     AccountOverviewScreen(),
     AddExpenseScreen(),
-    AccountOverviewScreen(),
+    LineChartScreen(),
   ];
 
   static final List<BottomNavigationBarItem> bottomNavigationBarItem = [
@@ -25,7 +26,7 @@ class Constant {
       title: Container(),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.pie_chart),
+      icon: Icon(Icons.show_chart),
       title: Container(),
     ),
   ];

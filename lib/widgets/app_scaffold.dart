@@ -61,7 +61,6 @@ class AppScaffold extends StatelessWidget {
         appBar: appBar
             ? AppBar(
                 leading: isBackButton ? leadingIcon : Container(),
-                elevation: isElevation ? AppBarElevation.normal : 0,
                 title: AppText(
                   title ?? '',
                   color: AppColor.white,

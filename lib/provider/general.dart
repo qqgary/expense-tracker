@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class GeneralProvider extends ChangeNotifier {
   int _bottomNavigationIndex = 0;

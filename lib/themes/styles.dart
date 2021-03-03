@@ -30,128 +30,6 @@ class AppColor {
   static Color error = Color(0xffF96366);
 }
 
-class AppBarElevation {
-  static double normal = 6;
-}
-
-class AppCardElevation {
-  static double normal = 4;
-}
-
-class AppTextColor {}
-
-class AppTextShadow {
-  static List<Shadow> normal = [
-    Shadow(
-      offset: Offset(0.5, 0.5),
-      blurRadius: 2.0,
-      color: Colors.black.withOpacity(0.5),
-    ),
-  ];
-}
-
-class AppBoxShadow {
-  static const List<BoxShadow> normal = [
-    BoxShadow(
-      color: Color(0xffe0e0e0),
-      blurRadius: 5.0, // has the effect of softening the shadow
-      spreadRadius: 2.0, // has the effect of extending the shadow
-      offset: Offset(
-        0.0,
-        3.0, // vertical, move down 10
-      ),
-    ),
-  ];
-
-  static const List<BoxShadow> trendingVoucher = [
-    BoxShadow(
-      color: Colors.black87,
-      blurRadius: 2.0,
-      spreadRadius: 1.0,
-      offset: Offset(
-        0.0,
-        1.0,
-      ),
-    ),
-  ];
-
-  static final Color color = Colors.grey[200];
-  static const List<BoxShadow> editProfileContainer = [
-    BoxShadow(
-      color: Color(0xffbababa),
-      blurRadius: 10,
-      spreadRadius: 2.0,
-      offset: Offset(
-        0.0,
-        2.0,
-      ),
-    ),
-  ];
-}
-
-class AppListStop {
-  static List<double> normal = [
-    0.1,
-    0.5,
-    0.7,
-    0.9,
-  ];
-}
-
-class AppColorGradient {
-  static List<double> stops = [
-    0.1,
-    0.5,
-    0.7,
-    0.9,
-  ];
-
-  static List<double> passesTitle = [
-    0,
-    0.2,
-    1,
-  ];
-}
-
-class AppColorList {
-  static List<Color> grey = [
-    Colors.black.withOpacity(0.5),
-    Colors.black.withOpacity(0.2),
-    Colors.black.withOpacity(0.05),
-    Colors.black.withOpacity(0.0),
-  ];
-
-  static List<Color> passesTitleGrey = [
-    Colors.black.withOpacity(0),
-    Colors.black.withOpacity(0.08),
-    Colors.black.withOpacity(0.6),
-  ];
-  static List<Color> red = [
-    Colors.red[700],
-    Colors.red[600],
-    Colors.red[500],
-    Colors.red[400],
-  ];
-  static List<Color> green = [
-    Colors.green[700],
-    Colors.green[600],
-    Colors.green[500],
-    Colors.green[400],
-  ];
-  static List<Color> orange = [
-    Colors.orange[700],
-    Colors.orange[600],
-    Colors.orange[500],
-    Colors.orange[400],
-  ];
-  static List<Color> blue = [
-    Colors.blue[700],
-    Colors.blue[600],
-    Colors.blue[500],
-    Colors.blue[400],
-  ];
-}
-
 class AppIcon {
   static IconData right = Icons.chevron_right;
 }
@@ -197,6 +75,13 @@ class AppMargin {
 class AppOpacity {
   static double half = 0.5;
 }
+
+
+
+const List<Color> lineChartGradientColors = [
+  Color(0xff23b6e6),
+  Color(0xff02d39a),
+];
 
 class AppCornerRadius {
   static double small = 4.0;

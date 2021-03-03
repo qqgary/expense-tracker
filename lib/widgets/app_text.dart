@@ -50,7 +50,6 @@ class AppText extends StatelessWidget {
         decoration: underline
             ? TextDecoration.underline
             : isStrikeThrough ? TextDecoration.lineThrough : null,
-        shadows: isTextShadow ? AppTextShadow.normal : null,
       ),
     );
   }
