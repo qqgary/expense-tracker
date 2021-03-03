@@ -4,7 +4,7 @@ class AccountModel {
   double amount;
   String title;
   String description;
-  Category categories;
+  CategoryModel category;
 
-  AccountModel({this.amount, this.categories});
+  AccountModel({this.amount, this.category});
 }

@@ -10,6 +10,7 @@ import 'package:expense_tracker/widgets/category_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class AccountOverviewScreen extends StatelessWidget {
   static const String routeName = 'account-overview';
@@ -64,7 +65,7 @@ class AccountOverviewScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            'TOP 3',
+            'Recent Expenses',
             fontSize: AppFontSize.extraTitle,
           ),
           AppHeightSizedBox.mediumBox,
@@ -127,7 +128,8 @@ class AccountOverviewScreen extends StatelessWidget {
         AppWidthSizedBox.mediumBox,
         isVisible
             ? AppText(
-                (account.amount).toString(),
+                account.amount.toString(),
+                isCurrencyFormat: true,
                 color: (account.amount) < 0 ? AppColor.red : AppColor.green,
                 fontSize: AppFontSize.extraTitle,
                 fontWeight: AppFontWeight.bold,

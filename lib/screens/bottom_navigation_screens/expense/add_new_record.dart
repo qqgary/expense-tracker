@@ -13,7 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class AddNewRecord extends StatelessWidget {
-  final Category category;
+  final CategoryModel category;
   static const String routeName = 'add-new-record';
   AddNewRecord({this.category, Key key}) : super(key: key);
 

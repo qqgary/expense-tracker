@@ -1,9 +1,10 @@
 import 'package:expense_tracker/model/aaccount.dart';
+import 'package:expense_tracker/model/category.dart';
 import 'package:flutter/material.dart';
 
 class AccountProvider extends ChangeNotifier {
   AccountModel _account = AccountModel(
-    amount: 100000.00,
+    amount: 0.00,
   );
   AccountModel get account => this._account;
 

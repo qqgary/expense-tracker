@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Category {
+class CategoryModel {
   IconData icon;
   Color color;
   String name;
 
-  Category({@required this.icon,@required this.color,@required this.name});
+  CategoryModel({
+    @required this.icon,
+    @required this.color,
+    @required this.name,
+  });
 }

@@ -57,20 +57,20 @@ class Constant {
     ),
   );
 
-  static List<Category> categories = [
-    Category(icon: Icons.fastfood, color: AppColor.red, name: 'Food'),
-    Category(icon: FontAwesomeIcons.car, color: AppColor.blue, name: 'Car'),
-    Category(
+  static List<CategoryModel> categories = [
+    CategoryModel(icon: Icons.fastfood, color: AppColor.red, name: 'Food'),
+    CategoryModel(icon: FontAwesomeIcons.car, color: AppColor.blue, name: 'Car'),
+    CategoryModel(
         icon: Icons.local_hospital, color: AppColor.orange, name: 'Health'),
-    Category(
+    CategoryModel(
         icon: FontAwesomeIcons.home, color: AppColor.yellow, name: 'Living'),
-    Category(icon: Icons.book, color: AppColor.red, name: 'Education'),
-    Category(
+    CategoryModel(icon: Icons.book, color: AppColor.red, name: 'Education'),
+    CategoryModel(
         icon: FontAwesomeIcons.shieldVirus,
         color: AppColor.red,
         name: 'Insurance'),
-    Category(icon: Icons.phone, color: AppColor.red, name: 'Phone'),
-    Category(icon: Icons.pets, color: AppColor.orange, name: 'Pet'),
-    Category(icon: Icons.eject, color: AppColor.orange, name: 'Others'),
+    CategoryModel(icon: Icons.phone, color: AppColor.red, name: 'Phone'),
+    CategoryModel(icon: Icons.pets, color: AppColor.orange, name: 'Pet'),
+    CategoryModel(icon: Icons.eject, color: AppColor.orange, name: 'Others'),
   ];
 }

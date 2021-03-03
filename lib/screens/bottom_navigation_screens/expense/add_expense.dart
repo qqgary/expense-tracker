@@ -36,7 +36,7 @@ class AddExpenseScreen extends StatelessWidget {
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
           itemCount: Constant.categories.length,
           itemBuilder: (_, i) {
-            Category category = Constant.categories[i];
+            CategoryModel category = Constant.categories[i];
 
             return InkWell(
               onTap: () => navigatorPopUp(
