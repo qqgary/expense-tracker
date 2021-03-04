@@ -40,8 +40,8 @@ class AccountOverviewScreen extends StatelessWidget {
                     final bool isSuccess =
                         await accProvider.deleteExpense(expense);
 
-                    if (isSuccess) Navigator.pop(context);
-                    Navigator.pop(context);
+                    if (isSuccess)
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                   },
                 )
               ],

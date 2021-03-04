@@ -55,8 +55,7 @@ class AddNewRecord extends StatelessWidget {
         await accProvider.addAmount(context, expense);
     });
 
-    Navigator.pop(context);
-    Navigator.pop(context);
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   @override
