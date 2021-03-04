@@ -16,6 +16,39 @@ class AccountOverviewScreen extends StatelessWidget {
   static const String routeName = 'account-overview';
   const AccountOverviewScreen({Key key}) : super(key: key);
 
+  Future<bool> _onDismiss(BuildContext context, ExpenseModel expense,
+      AccountProvider accProvider) async {
+    final bool res = await showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              content: AppText("Are you sure you want to delete?"),
+              actions: <Widget>[
+                FlatButton(
+                  child: AppText(
+                    "Cancel",
+                    color: AppColor.grey,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                FlatButton(
+                  child: AppText(
+                    "Delete",
+                  ),
+                  onPressed: () async {
+                    showLoadingDialog(context);
+                    await Future.delayed(Duration(seconds: 1));
+                    final bool isSuccess =
+                        await accProvider.deleteExpense(expense);
+
+                    if (isSuccess) Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ));
+    return res;
+  }
+
   @override
   Widget build(BuildContext context) {
     final GeneralProvider genProvider = Provider.of<GeneralProvider>(context);
@@ -46,8 +79,10 @@ class AccountOverviewScreen extends StatelessWidget {
   ) {
     final AccountProvider accProvider = Provider.of<AccountProvider>(context);
     final double sumAmount = accProvider.sumAmount;
+
     return Column(
       children: [
+        AppHeightSizedBox.mediumBox,
         _buildAccountBalance(
           context,
           sumAmount,
@@ -71,7 +106,10 @@ class AccountOverviewScreen extends StatelessWidget {
     AccountProvider accProvider,
   ) {
     if (accProvider.expenses == null || accProvider.expenses.isEmpty)
-      return Container();
+      return Container(
+        margin: EdgeInsets.only(top: maxHeight(context) * 0.2),
+        child: AppText('No record yet!'),
+      );
 
     return Container(
       padding: EdgeInsets.all(AppMargin.medium),
@@ -90,32 +128,63 @@ class AccountOverviewScreen extends StatelessWidget {
             itemCount: accProvider.expenses.length,
             itemBuilder: (ctx, i) {
               ExpenseModel expense = accProvider.expenses[i];
-              return ListTile(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    ExpenseDetailScreen.routeName,
-                    arguments: expense,
-                  );
-                },
-                leading: CategoryIcon(
-                  icon: expense.category.icon,
-                  color: expense.category.color,
-                ),
-                title: AppText(expense.category.name),
-                subtitle: expense.name.isEmpty
-                    ? null
-                    : AppText(expense.name, color: AppColor.grey),
-                trailing: AppText(
-                  isVisible ? expense.amount.toString() : '🙈',
-                  color: expense.category.isExpense
-                      ? AppColor.red
-                      : AppColor.accentGreen,
+              return Dismissible(
+                key: Key(expense.id),
+                background: slideLeftBackground(),
+                confirmDismiss: (DismissDirection direction) =>
+                    _onDismiss(context, expense, accProvider),
+                child: ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      ExpenseDetailScreen.routeName,
+                      arguments: expense,
+                    );
+                  },
+                  leading: CategoryIcon(
+                    icon: expense.category.icon,
+                    color: expense.category.color,
+                  ),
+                  title: AppText(expense.category.name),
+                  subtitle: expense.name.isEmpty
+                      ? null
+                      : AppText(expense.name, color: AppColor.grey),
+                  trailing: AppText(
+                    isVisible ? expense.amount.toString() : '🙈',
+                    color: expense.category.isExpense
+                        ? AppColor.red
+                        : AppColor.accentGreen,
+                  ),
                 ),
               );
             },
           )
         ],
+      ),
+    );
+  }
+
+  Widget slideLeftBackground() {
+    return Container(
+      color: AppColor.red,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+            AppText(
+              " Delete",
+              color: Colors.white,
+              fontWeight: AppFontWeight.bold,
+              textAlign: TextAlign.right,
+            ),
+            AppWidthSizedBox.largeBox,
+          ],
+        ),
+        alignment: Alignment.centerRight,
       ),
     );
   }

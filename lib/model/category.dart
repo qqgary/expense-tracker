@@ -6,9 +6,10 @@ class CategoryModel {
   String name;
   bool isExpense;
 
-  CategoryModel(
-      {@required this.icon,
-      @required this.color,
-      @required this.name,
-      @required this.isExpense});
+  CategoryModel({
+    @required this.icon,
+    @required this.color,
+    @required this.name,
+    @required this.isExpense,
+  });
 }

@@ -46,6 +46,8 @@ class AccountProvider extends ChangeNotifier {
       PieChartModel(type: PieChartType.INCOME, amount: _totalPieIncome),
     ];
 
+    print({'ex': _pieChartAmount[0].amount});
+    print({'inc': _pieChartAmount[1].amount});
     notifyListeners();
   }
 
@@ -53,6 +55,29 @@ class AccountProvider extends ChangeNotifier {
     _expenses.add(expense);
     pieChartCategory.add(expense.amount);
     getPie();
+  }
+
+  Future<bool> deleteExpense(ExpenseModel expense) async {
+    try {
+      _expenses.removeWhere((e) => e.id == expense.id);
+
+      if (expense.category.isExpense) {
+        _sumAmount += expense.amount;
+        _pieChartExpenses.removeWhere((e) => e == expense.amount);
+        _totalPieExpenses -= expense.amount;
+      } else {
+        _sumAmount -= expense.amount;
+        _pieChartIncome.removeWhere((e) => e == expense.amount);
+        _totalPieIncome -= expense.amount;
+      }
+
+      getPie();
+      notifyListeners();
+      return true;
+    } catch (err) {
+      print(err);
+      return false;
+    }
   }
 
   Future<void> addAmount(BuildContext context, ExpenseModel expense) async {

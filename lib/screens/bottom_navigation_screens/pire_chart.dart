@@ -28,27 +28,35 @@ class PieChartScreen extends StatelessWidget {
   Container _buildMainContainer(
     BuildContext context,
     GeneralProvider genProvider,
-  ) =>
-      Container(
-        width: maxWidth(context),
-        child: Column(
-          children: [
-            _buildPieChart(context, genProvider),
-            Container(
-              margin: EdgeInsets.only(top: maxHeight(context) * 0.3),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildDots(AppColor.red, 'Expenses'),
-                  _buildDots(AppColor.accentGreen, 'Income'),
-                ],
-              ),
-            )
-          ],
-        ),
-      );
+  ) {
+    final AccountProvider accProvider = Provider.of<AccountProvider>(
+      context,
+    );
+    return Container(
+      width: maxWidth(context),
+      child: Column(
+        children: [
+          _buildPieChart(context, genProvider),
+          Container(
+            margin: EdgeInsets.only(top: maxHeight(context) * 0.3),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildDots(accProvider, AppColor.red, 'Expenses'),
+                _buildDots(accProvider, AppColor.accentGreen, 'Income'),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
-  Row _buildDots(Color color, String title) {
+  Widget _buildDots(AccountProvider accProvider, Color color, String title) {
+    if (accProvider.pieChartAmount == null) return Container();
+
+    if (accProvider.pieChartAmount[0].amount == 0 &&
+        accProvider.pieChartAmount[1].amount == 0) return Container();
     return Row(
       children: [
         Container(
@@ -65,35 +73,47 @@ class PieChartScreen extends StatelessWidget {
     );
   }
 
-  Container _buildPieChart(BuildContext context, GeneralProvider genProvider) =>
-      Container(
-        margin: EdgeInsets.only(top: maxHeight(context) * 0.3),
-        child: PieChart(
-          PieChartData(
-            pieTouchData: PieTouchData(
-                touchCallback: (PieTouchResponse pieTouchResponse) {
-              if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                  pieTouchResponse.touchInput is FlPanEnd)
-                genProvider.setPieChartTouchedIndex(-1);
-              else
-                genProvider.setPieChartTouchedIndex(
-                    pieTouchResponse.touchedSectionIndex);
-            }),
-            borderData: FlBorderData(
-              show: false,
-            ),
-            sectionsSpace: 0,
-            centerSpaceRadius: 40,
-            sections: showingSections(context),
-          ),
-        ),
-      );
-
-  List<PieChartSectionData> showingSections(BuildContext context) {
+  Widget _buildPieChart(BuildContext context, GeneralProvider genProvider) {
     final AccountProvider accProvider = Provider.of<AccountProvider>(
       context,
     );
-    
+
+    if (accProvider.pieChartAmount == null) return Container();
+    if (accProvider.pieChartAmount[0].amount == 0 &&
+        accProvider.pieChartAmount[1].amount == 0)
+      return Container(
+        margin: EdgeInsets.only(top: maxHeight(context) * 0.2),
+        child: AppText(
+          'No record yet!',
+        ),
+      );
+
+    return Container(
+      margin: EdgeInsets.only(top: maxHeight(context) * 0.3),
+      child: PieChart(
+        PieChartData(
+          pieTouchData:
+              PieTouchData(touchCallback: (PieTouchResponse pieTouchResponse) {
+            if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                pieTouchResponse.touchInput is FlPanEnd)
+              genProvider.setPieChartTouchedIndex(-1);
+            else
+              genProvider.setPieChartTouchedIndex(
+                  pieTouchResponse.touchedSectionIndex);
+          }),
+          borderData: FlBorderData(
+            show: false,
+          ),
+          sectionsSpace: 0,
+          centerSpaceRadius: 40,
+          sections: showingSections(context, accProvider),
+        ),
+      ),
+    );
+  }
+
+  List<PieChartSectionData> showingSections(
+      BuildContext context, AccountProvider accProvider) {
     if (accProvider.pieChartAmount == null) return null;
 
     final double total =
@@ -109,7 +129,7 @@ class PieChartScreen extends StatelessWidget {
           return PieChartSectionData(
             color: AppColor.red,
             value: amount,
-            title: '$percent%',
+            title: percent == 0 ? '' : '${percent.toStringAsFixed(2)}%',
             titleStyle:
                 TextStyle(fontWeight: FontWeight.bold, color: AppColor.white),
           );
@@ -117,7 +137,7 @@ class PieChartScreen extends StatelessWidget {
           return PieChartSectionData(
             color: AppColor.accentGreen,
             value: amount,
-            title: '$percent%',
+            title: percent == 0 ? '' : '${percent.toStringAsFixed(2)}%',
             titleStyle:
                 TextStyle(fontWeight: FontWeight.bold, color: AppColor.white),
           );

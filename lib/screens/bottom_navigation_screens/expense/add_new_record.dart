@@ -13,6 +13,7 @@ import 'package:expense_tracker/widgets/category_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class AddNewRecord extends StatelessWidget {
   final CategoryModel category;
@@ -33,11 +34,13 @@ class AddNewRecord extends StatelessWidget {
         Provider.of<AccountProvider>(context, listen: false);
 
     final ExpenseModel expense = ExpenseModel(
+      id: Uuid().v1(),
       amount: accProvider.expensePrice,
       category: category,
       name: accProvider.expenseName,
       note: accProvider.expenseNode,
     );
+
     final GeneralProvider genProvider =
         Provider.of<GeneralProvider>(context, listen: false);
 
@@ -45,12 +48,11 @@ class AddNewRecord extends StatelessWidget {
 
     showLoadingDialog(context);
 
-    await Future.delayed(Duration(seconds: 1)).then((_) {
-      if (category.isExpense) {
-        accProvider.minusAmount(context, expense);
-      } else {
-        accProvider.addAmount(context, expense);
-      }
+    await Future.delayed(Duration(seconds: 1)).then((_) async {
+      if (category.isExpense)
+        await accProvider.minusAmount(context, expense);
+      else
+        await accProvider.addAmount(context, expense);
     });
 
     Navigator.pop(context);
