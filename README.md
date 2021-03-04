@@ -1,16 +1,26 @@
 # expense_tracker
 
-A new Flutter project.
+An expense tracker application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+- git clone 'git@github.com:qqgary/expense-tracker.git' expense-tracker
+- flutter create --androidx .If android or ios folders aren't present.
+- flutter packages get or flutter pub get
+- flutter run
 
-A few resources to get you started if this is your first Flutter project:
+## Concepts
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Uses VSCode editor to build this flutter Expense Tracker app.
+- Provider for simple state managment.
+- Uses Code Magic for CI/CD.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Features
+
+- Users can choose categories to add their record.
+- Users are allowed to control whether account overview is visible or not visible.
+- users can delete the records.
+- Users can see his spending pattern by pie chart.
+
+
