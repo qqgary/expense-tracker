@@ -14,6 +14,7 @@ An expense tracker application.
 - Uses VSCode editor to build this flutter Expense Tracker app.
 - Provider for simple state managment.
 - Uses Code Magic for CI/CD.
+- Uses Gitmoji to commit messages. https://gitmoji.dev/
 
 
 ## Features
@@ -31,7 +32,7 @@ Android (APK): https://drive.google.com/file/d/1Mo-w1d_gW8KJdYKajW1PBYI3t1nLOY1V
 - Click 'install' and then 'install anyway'.
 - Click 'Done' or 'Open' to proceed.
 
-## Code Magic Screenshots 
+## Code Magic Screenshot
 
 ![image](https://user-images.githubusercontent.com/24584760/109935075-27732500-7d08-11eb-8253-09e57df2ff35.png)
 
