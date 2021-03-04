@@ -1,3 +1,4 @@
+import 'package:expense_tracker/utils/utils.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:expense_tracker/model/pie_chart.dart';
 import 'package:flutter/material.dart';
@@ -46,35 +47,37 @@ class AccountProvider extends ChangeNotifier {
       PieChartModel(type: PieChartType.INCOME, amount: _totalPieIncome),
     ];
 
-    print({'_totalPieExpenses': _totalPieExpenses});
-    print({'_totalPieIncome': _totalPieIncome});
-    print({'_pieChartAmount': _pieChartAmount});
-    print({'_pieChartExpenses': _pieChartExpenses});
-    print({'_pieChartIncome': _pieChartIncome});
-
     notifyListeners();
   }
 
-  Future<void> addAmount(ExpenseModel expense) async {
-    try {
-      _sumAmount += expensePrice;
-      _expenses.add(expense);
-      _pieChartIncome.add(expense.amount);
-      notifyListeners();
-      print({'_expenses': _expenses});
+  void _generalAddExpense(ExpenseModel expense, List<double> pieChartCategory) {
+    _expenses.add(expense);
+    pieChartCategory.add(expense.amount);
+    getPie();
+  }
 
-      getPie();
+  Future<void> addAmount(BuildContext context, ExpenseModel expense) async {
+    try {
+      // I've been using dio as API Client
+      // If calling api with post method it will be like below
+      //   final response = await apiService.dio.post(APIRoute,
+      //   data: expense,);
+
+      _sumAmount += expensePrice;
+      _generalAddExpense(expense, pieChartIncome);
+      notifyListeners();
     } catch (err) {
       print(err);
     }
   }
 
-  Future<void> minusAmount(ExpenseModel expense) async {
-    _sumAmount -= expensePrice;
-    _expenses.add(expense);
-    _pieChartExpenses.add(expense.amount);
-    notifyListeners();
-    print({'_expenses': _expenses});
-    getPie();
+  Future<void> minusAmount(BuildContext context, ExpenseModel expense) async {
+    try {
+      _sumAmount -= expensePrice;
+      _generalAddExpense(expense, _pieChartExpenses);
+      notifyListeners();
+    } catch (err) {
+      print(err);
+    }
   }
 }

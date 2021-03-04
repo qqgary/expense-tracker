@@ -1,3 +1,4 @@
+import 'package:expense_tracker/screens/main_screen.dart';
 import 'package:expense_tracker/themes/styles.dart';
 import 'package:expense_tracker/utils/utils.dart';
 import 'package:expense_tracker/model/expense.dart';
@@ -25,7 +26,7 @@ class AddNewRecord extends StatelessWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _onAddRecord(BuildContext context) {
+  void _onAddRecord(BuildContext context) async {
     if (!_formKey.currentState.validate()) return;
     _formKey.currentState.save();
 
@@ -43,12 +44,17 @@ class AddNewRecord extends StatelessWidget {
 
     if (genProvider.isFirstTimeLogin) genProvider.setIsFirstTimeLogin();
 
-    if (category.isExpense) {
-      accProvider.minusAmount(expense);
-    } else {
-      accProvider.addAmount(expense);
-    }
+    showLoadingDialog(context);
 
+    await Future.delayed(Duration(seconds: 1)).then((_) {
+      if (category.isExpense) {
+        accProvider.minusAmount(context, expense);
+      } else {
+        accProvider.addAmount(context, expense);
+      }
+    });
+
+    Navigator.pop(context);
     Navigator.pop(context);
   }
 
@@ -101,6 +107,7 @@ class AddNewRecord extends StatelessWidget {
             node: _priceNode,
             isCheckDecimal: true,
             inputType: TextInputType.numberWithOptions(decimal: true),
+            next: _nameNode,
             onSave: (String val) =>
                 accProvider.setExpensePrice(double.parse(val)),
           ),
@@ -109,6 +116,7 @@ class AddNewRecord extends StatelessWidget {
             'Name',
             node: _nameNode,
             isCheckEmpty: false,
+            next: _noteNode,
             onSave: (String val) => accProvider.setExpenseName(val),
           ),
           AppHeightSizedBox.smallBox,

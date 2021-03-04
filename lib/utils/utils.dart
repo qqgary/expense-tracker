@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/app_full_page_indicator.dart';
 import 'package:flutter/material.dart';
 
 double maxHeight(BuildContext context) => MediaQuery.of(context).size.height;
@@ -32,3 +33,13 @@ fieldFocusChange(
   currentFocus.unfocus();
   FocusScope.of(context).requestFocus(nextFocus);
 }
+
+void showLoadingDialog(BuildContext context, {String text: 'Loading'}) =>
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AppFullPageIndicator(
+          text: text,
+        );
+      },
+    );

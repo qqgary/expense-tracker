@@ -90,7 +90,12 @@ class PieChartScreen extends StatelessWidget {
       );
 
   List<PieChartSectionData> showingSections(BuildContext context) {
-    final AccountProvider accProvider = Provider.of<AccountProvider>(context);
+    final AccountProvider accProvider = Provider.of<AccountProvider>(
+      context,
+    );
+    
+    if (accProvider.pieChartAmount == null) return null;
+
     final double total =
         accProvider.totalPieExpenses + accProvider.totalPieIncome;
 

@@ -107,7 +107,9 @@ class AccountOverviewScreen extends StatelessWidget {
                     : AppText(expense.name, color: AppColor.grey),
                 trailing: AppText(
                   isVisible ? expense.amount.toString() : '🙈',
-                  color: AppColor.red,
+                  color: expense.category.isExpense
+                      ? AppColor.red
+                      : AppColor.accentGreen,
                 ),
               );
             },
