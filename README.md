@@ -24,3 +24,9 @@ An expense tracker application.
 - Users can see his spending pattern by pie chart.
 
 
+## Code Magic Screenshots 
+
+![image](https://user-images.githubusercontent.com/24584760/109920350-208ee700-7cf5-11eb-9582-3e60481b3a45.png)
+
+
+
