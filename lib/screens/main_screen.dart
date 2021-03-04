@@ -1,10 +1,8 @@
+import 'package:expense_tracker/provider/general.dart';
+import 'package:expense_tracker/themes/styles.dart';
+import 'package:expense_tracker/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:expense_tracker/themes/styles.dart';
-import 'package:expense_tracker/widgets/app_scaffold.dart';
-import 'package:expense_tracker/provider/general.dart';
-import 'package:expense_tracker/utils/constant.dart';
 
 class MainScreen extends StatelessWidget {
   static const String routeName = 'home-bottom-navigation';

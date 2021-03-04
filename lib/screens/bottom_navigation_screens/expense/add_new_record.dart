@@ -1,17 +1,16 @@
-import 'package:expense_tracker/screens/main_screen.dart';
-import 'package:expense_tracker/themes/styles.dart';
-import 'package:expense_tracker/utils/utils.dart';
+import 'package:expense_tracker/model/category.dart';
 import 'package:expense_tracker/model/expense.dart';
-import 'package:expense_tracker/widgets/app_action_button.dart';
-import 'package:expense_tracker/widgets/app_text.dart';
-import 'package:expense_tracker/widgets/app_text_form_field.dart';
 import 'package:expense_tracker/provider/account.dart';
 import 'package:expense_tracker/provider/general.dart';
-import 'package:flutter/material.dart';
-import 'package:expense_tracker/model/category.dart';
-import 'package:expense_tracker/widgets/app_scaffold.dart';
+import 'package:expense_tracker/themes/styles.dart';
+import 'package:expense_tracker/utils/utils.dart';
 import 'package:expense_tracker/utils/widget_modifier.dart';
+import 'package:expense_tracker/widgets/app_action_button.dart';
+import 'package:expense_tracker/widgets/app_scaffold.dart';
+import 'package:expense_tracker/widgets/app_text.dart';
+import 'package:expense_tracker/widgets/app_text_form_field.dart';
 import 'package:expense_tracker/widgets/category_icon.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 

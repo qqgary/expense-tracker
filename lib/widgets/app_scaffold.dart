@@ -1,9 +1,8 @@
 import 'package:expense_tracker/themes/styles.dart';
+import 'package:expense_tracker/utils/widget_modifier.dart';
 import 'package:expense_tracker/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:expense_tracker/utils/widget_modifier.dart';
 
 class AppScaffold extends StatelessWidget {
   final bool appBar;

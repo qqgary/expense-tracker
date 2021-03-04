@@ -1,6 +1,6 @@
 import 'package:expense_tracker/model/category.dart';
 import 'package:expense_tracker/screens/bottom_navigation_screens/account_overview.dart';
-import 'package:expense_tracker/screens/bottom_navigation_screens/expense/add_expense.dart';
+import 'package:expense_tracker/screens/bottom_navigation_screens/expense/choose_category.dart';
 import 'package:expense_tracker/screens/bottom_navigation_screens/pire_chart.dart';
 import 'package:expense_tracker/themes/styles.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class Constant {
   static final List<Widget> bottomNavigationScreen = [
     AccountOverviewScreen(),
-    AddExpenseScreen(),
+    ChooseCategoryScreen(),
     PieChartScreen(),
   ];
 
@@ -44,18 +44,6 @@ class Constant {
     accentColor: darkAccent,
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
-    appBarTheme: AppBarTheme(
-      textTheme: TextTheme(
-        title: TextStyle(
-          color: lightBG,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w800,
-        ),
-      ),
-//      iconTheme: IconThemeData(
-//        color: darkAccent,
-//      ),
-    ),
   );
 
   static List<CategoryModel> categories = [

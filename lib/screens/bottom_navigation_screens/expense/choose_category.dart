@@ -10,9 +10,9 @@ import 'package:expense_tracker/utils/constant.dart';
 import 'package:expense_tracker/utils/widget_modifier.dart';
 import 'package:expense_tracker/screens/bottom_navigation_screens/expense/add_new_record.dart';
 
-class AddExpenseScreen extends StatelessWidget {
+class ChooseCategoryScreen extends StatelessWidget {
   static const String routeName = 'add-expense-screen';
-  const AddExpenseScreen({Key key}) : super(key: key);
+  const ChooseCategoryScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class AddExpenseScreen extends StatelessWidget {
           'Choose one category',
           color: AppColor.white,
         ).padding(),
-     
         GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate:
               SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
@@ -67,8 +67,6 @@ class AddExpenseScreen extends StatelessWidget {
             );
           },
         ),
-     
-
       ],
     );
   }
